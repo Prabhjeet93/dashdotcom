@@ -7,9 +7,7 @@
         <methods>
           <include name="beforeMethod"/>
           <include name="loginSuccess"/>
-          <include name="loginFailed"/>
           <include name="afterMethod"/>
-          <include name="checkbox"/>
         </methods>
       </class> <!-- dashtest.MainScripts -->
     </classes>
