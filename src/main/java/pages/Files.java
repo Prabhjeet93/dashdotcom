@@ -24,6 +24,8 @@ public class Files {
 	By chooseFile = By.id("file-upload");
 	By btn_file_submit= By.id("file-submit");
 	
+	By txt_file_submitted= By.id("uploaded-files");
+	
 	 public Files(WebDriver driver){
 
 	    	this.driver = driver;
@@ -70,6 +72,6 @@ public class Files {
 //		 System.out.println(driver.findElement(By.id("uploaded-files")).getText());
 		 
 //		 Assert.assertEquals(driver.findElement(By.id("uploaded-files")).getText(), "some-file.txt");
-		 utlity.validate_Text(btn_file_submit,"some-file.txt",driver);
+		 utlity.validate_Text(txt_file_submitted,"some-file.txt",driver);
 	 }
 }

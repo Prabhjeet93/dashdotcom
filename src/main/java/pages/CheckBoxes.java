@@ -29,8 +29,8 @@ public class CheckBoxes {
     	
     	utlity.validate_Text(txt_checkbox,toptext,driver);
     	
-        utlity.click_checkbox(chkbox1);
-        utlity.chk_isSelected(chkbox1,true);
+        utlity.click_checkbox(chkbox1, driver);
+        utlity.chk_isSelected(chkbox1,true, driver);
 
     }
     public void uncheckbox(String toptext){
@@ -39,8 +39,8 @@ public class CheckBoxes {
     	
     	utlity.validate_Text(txt_checkbox,toptext,driver);
     	
-        utlity.unclick_checkbox(chkbox2);
-        utlity.chk_isSelected(chkbox2,false);
+        utlity.unclick_checkbox(chkbox2, driver);
+        utlity.chk_isSelected(chkbox2,false, driver);
 
     }
 

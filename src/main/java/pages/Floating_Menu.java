@@ -66,13 +66,13 @@ public class Floating_Menu {
 		 utlity.validate_Text(txt_floatingmenu,toptext,driver);
 	    
 		 utlity.mouse_hover(driver,hover_img1);
-		 utlity.assert_text(hover_img1_user, "name: user1");
+		 utlity.assert_text(hover_img1_user, "name: user1", driver);
 		 
 		 utlity.mouse_hover(driver,hover_img2);
-		 utlity.assert_text(hover_img2_user, "name: user2");
+		 utlity.assert_text(hover_img2_user, "name: user2", driver);
 		 
 		 utlity.mouse_hover(driver,hover_img3);
-		 utlity.assert_text(hover_img3_user, "name: user3");
+		 utlity.assert_text(hover_img3_user, "name: user3", driver);
 
 	 }
 

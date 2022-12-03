@@ -36,7 +36,7 @@ public class javascripts_alerts {
 		utlity.click_anything(txt_jsalerts1, driver);
 		utlity.validate_alert_msg("I am a JS Alert",driver);
 		utlity.accept_alert(driver);
-		utlity.assert_text(val_txt_jsalert1, "You successfuly clicked an alert");
+		utlity.assert_text(val_txt_jsalert1, "You successfuly clicked an alert", driver);
 		
 		
 //		Test clicks on JS confirm Button and clicks ok on alert.
@@ -44,7 +44,7 @@ public class javascripts_alerts {
 		utlity.click_anything(txt_jsalerts2, driver);
 		utlity.validate_alert_msg("I am a JS Confirm", driver);
 		utlity.accept_alert(driver);
-		utlity.assert_text(val_txt_jsalert1, "You clicked: Ok");
+		utlity.assert_text(val_txt_jsalert1, "You clicked: Ok", driver);
 		
 		
 //		Test clicks on JS Prompt Button and types a message on Prompt.
@@ -53,7 +53,7 @@ public class javascripts_alerts {
 		utlity.validate_alert_msg("I am a JS prompt", driver);
 		utlity.enter_txt_jsAlerts(driver, "testing dash");
 		utlity.accept_alert(driver);
-		utlity.assert_text(val_txt_jsalert1, "You entered: testing dash");
+		utlity.assert_text(val_txt_jsalert1, "You entered: testing dash", driver);
 		 
 		 
 	 

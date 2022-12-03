@@ -6,7 +6,7 @@
       <class name="dashtest.MainScripts">
         <methods>
           <include name="beforeMethod"/>
-          <include name="loginSuccess"/>
+          <include name="fileUpload"/>
           <include name="afterMethod"/>
         </methods>
       </class> <!-- dashtest.MainScripts -->

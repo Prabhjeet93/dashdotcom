@@ -3,6 +3,7 @@ package mainUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.time.Duration;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -34,7 +35,6 @@ public class UtilityClass {
 	public void validate_Text(By wb, String expected, WebDriver driver) {
 		this.explicit_wait(wb,driver);
 		WebElement val_txt = driver.findElement(wb);
-		
 		String actual = val_txt.getText().trim();
 		System.out.println("validating this text: "+actual);
 		Assert.assertEquals(actual, expected);
@@ -59,7 +59,7 @@ public class UtilityClass {
 		clk.sendKeys(txt);
 	}
 	
-	public void dropdown(By wb, String selecttype, String text) {
+	public void dropdown(By wb, String selecttype, String text, WebDriver driver) {
 		this.explicit_wait(wb,driver);
 		WebElement val_drpdown = driver.findElement(wb);
 		
@@ -77,7 +77,7 @@ public class UtilityClass {
 		String SelectedText = option.getText();
 		System.out.println("#################: "+SelectedText);
 	}
-	public void val_dropdown_value(By wb, String text) {
+	public void val_dropdown_value(By wb, String text, WebDriver driver) {
 		this.explicit_wait(wb,driver);
 		WebElement val_drpdown = driver.findElement(wb);
 		
@@ -88,14 +88,14 @@ public class UtilityClass {
 		Assert.assertEquals(SelectedText, text);
 	}
 	
-	public void assert_dropdownvalue(By wb, String text ) {
+	public void assert_dropdownvalue(By wb, String text, WebDriver driver ) {
 		this.explicit_wait(wb,driver);
 		WebElement val_drpdown = driver.findElement(wb);
 		
 		Assert.assertEquals(val_drpdown.getText(), text);
 	}
 	
-	public void click_checkbox(By wb ) {
+	public void click_checkbox(By wb, WebDriver driver) {
 		//first check it is not checked.
 		this.explicit_wait(wb,driver);
 		WebElement val_chkbox = driver.findElement(wb);
@@ -106,7 +106,7 @@ public class UtilityClass {
 		}
 	}
 	
-	public void unclick_checkbox(By wb) {
+	public void unclick_checkbox(By wb, WebDriver driver) {
 		//first check it is not checked.
 		this.explicit_wait(wb,driver);
 		WebElement val_chkbox = driver.findElement(wb);
@@ -126,7 +126,7 @@ public class UtilityClass {
 		actions.moveToElement(contextmenu).contextClick().build().perform();
 	}
 	
-	public void chk_isSelected(By wb, boolean flag ) {
+	public void chk_isSelected(By wb, boolean flag, WebDriver driver) {
 		//first check it is not checked.
 		this.explicit_wait(wb,driver);
 		WebElement sel_chkbox = driver.findElement(wb);
@@ -154,13 +154,22 @@ public class UtilityClass {
 	}
 	
 	public void dragdrop(WebDriver driver, By sourceLocator, By destinationLocator) {
+		
+		this.explicit_wait(sourceLocator,driver);
 		WebElement sourceElement = driver.findElement(sourceLocator);
     	WebElement destinationElement = driver.findElement(destinationLocator);
 		try {
 	        if (sourceElement.isDisplayed() && destinationElement.isDisplayed()) {
-	            Actions action = new Actions(driver);
+	            //Actions action = new Actions(driver);
 	            //action.dragAndDrop(sourceElement, destinationElement).build().perform();
-	            action.clickAndHold(sourceElement).moveToElement(destinationElement).release().perform();
+	            //action.clickAndHold(sourceElement).moveToElement(destinationElement).release().perform();
+	            int x = sourceElement.getLocation().x;
+	            int y = destinationElement.getLocation().y;
+
+	    
+	            JavascriptExecutor js = (JavascriptExecutor) driver;
+	            js.executeScript("function createEvent(typeOfEvent) {\n" +"var event =document.createEvent(\"CustomEvent\");\n" +"event.initCustomEvent(typeOfEvent,true, true, null);\n" +"event.dataTransfer = {\n" +"data: {},\n" +"setData: function (key, value) {\n" +"this.data[key] = value;\n" +"},\n" +"getData: function (key) {\n" +"return this.data[key];\n" +"}\n" +"};\n" +"return event;\n" +"}\n" +"\n" +"function dispatchEvent(element, event,transferData) {\n" +"if (transferData !== undefined) {\n" +"event.dataTransfer = transferData;\n" +"}\n" +"if (element.dispatchEvent) {\n" + "element.dispatchEvent(event);\n" +"} else if (element.fireEvent) {\n" +"element.fireEvent(\"on\" + event.type, event);\n" +"}\n" +"}\n" +"\n" +"function simulateHTML5DragAndDrop(element, destination) {\n" +"var dragStartEvent =createEvent('dragstart');\n" +"dispatchEvent(element, dragStartEvent);\n" +"var dropEvent = createEvent('drop');\n" +"dispatchEvent(destination, dropEvent,dragStartEvent.dataTransfer);\n" +"var dragEndEvent = createEvent('dragend');\n" +"dispatchEvent(element, dragEndEvent,dropEvent.dataTransfer);\n" +"}\n" +"\n" +"var source = arguments[0];\n" +"var destination = arguments[1];\n" +"simulateHTML5DragAndDrop(source,destination);",sourceElement, destinationElement);
+
 	            System.out.println("drag and drop done");
 	        } else {
 	            System.out.println("Element was not displayed to drag");
@@ -193,7 +202,7 @@ public class UtilityClass {
 		//Performing the mouse hover action on the target element.
 		action.moveToElement(ele).perform();
 	}
-	public void assert_text(By wb, String text) {
+	public void assert_text(By wb, String text, WebDriver driver) {
 		this.explicit_wait(wb,driver);
 		WebElement ele = driver.findElement(wb);
 		
@@ -231,7 +240,7 @@ public class UtilityClass {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void fluent_wait(String element) {
+	public void fluent_wait(String element, WebDriver driver) {
 		
 		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver);
 		wait.withTimeout(5000, TimeUnit.MILLISECONDS);

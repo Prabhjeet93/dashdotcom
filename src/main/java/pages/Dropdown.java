@@ -30,10 +30,10 @@ public class Dropdown {
     	utlity.validate_Text(txt_dropdown,toptext,driver);
     	
     	//WebElement ele = driver.findElement(sl_drpdown);
-    	utlity.dropdown(sl_drpdown,"index","1");
-    	utlity.val_dropdown_value(sl_drpdown, "Option 1"); // validating text of option1
-    	utlity.dropdown(sl_drpdown,"index","2");
-    	utlity.val_dropdown_value(sl_drpdown, "Option 2"); // validating text of option1
+    	utlity.dropdown(sl_drpdown,"index","1", driver);
+    	utlity.val_dropdown_value(sl_drpdown, "Option 1", driver); // validating text of option1
+    	utlity.dropdown(sl_drpdown,"index","2", driver);
+    	utlity.val_dropdown_value(sl_drpdown, "Option 2", driver); // validating text of option1
     	
     }
 

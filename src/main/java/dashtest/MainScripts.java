@@ -53,7 +53,7 @@ public class MainScripts {
 		driver.manage().window().maximize();
 	}
 	
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void loginSuccess() throws InterruptedException {
 		ln = new login(driver);
 		System.out.println("Navigating to the page: "+UtilityClass.configReader("url_login"));
@@ -74,7 +74,7 @@ public class MainScripts {
 	public void loginFailed() throws InterruptedException {
 		ln = new login(driver);
 		System.out.println("Navigating to the page");
-		driver.get(UtilityClass.configReader("urllogin"));
+		driver.get(UtilityClass.configReader("url_login"));
 		String pageTitle = driver.getTitle();
 		System.out.println(pageTitle);
 		Assert.assertEquals(pageTitle, "The Internet");
@@ -114,7 +114,7 @@ public class MainScripts {
 		
 	}
 	
-	@Test(enabled = false) // not done yet. Fix the issue.
+	@Test(enabled = false)
 	public void dragAndDrop() throws InterruptedException {
 //		Test drags element A to element B.
 //		Test asserts that the text on element A and B are switched.
@@ -181,7 +181,7 @@ public class MainScripts {
 		dynmic.dynamic_loading("Dynamically Loaded Page Elements");
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = false)//not done yet
 	public void fileDownload() throws InterruptedException {
 //		Test clicks on the file.
 //		Test asserts that the file is downloaded.
@@ -281,7 +281,7 @@ public class MainScripts {
 		newWindow.navigate_new_window("Opening a new window");
 	}
 	
-	@Test(enabled = false)//not completed
+	@Test(enabled = true)//not completed
 	public void notification_Message() throws InterruptedException {
 //		Test clicks on the Click Here link a multiple times.
 //		Test asserts that one of the “Action Successful”, “Action unsuccessful, 

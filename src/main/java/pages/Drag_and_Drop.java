@@ -1,5 +1,7 @@
 package pages;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +15,7 @@ public class Drag_and_Drop {
 	
 
 	By sourceLocator1 = By.id("column-a");
-	By destinationLocator1 = By.id("column-a");
+	By destinationLocator1 = By.id("column-b");
 	By txt_dragdrop =By.xpath("//*[@id=\"content\"]/div/h3");
     
 
@@ -31,8 +33,9 @@ public class Drag_and_Drop {
     	utlity.validate_Text(txt_dragdrop,toptext,driver);
     	
     	utlity.dragdrop(driver,sourceLocator1,destinationLocator1);
-    	utlity.validate_Text(sourceLocator1, "B",driver); // validating text of source
-    	utlity.validate_Text(destinationLocator1, "A",driver); // validating text of source
+    	driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS) ;
+    	utlity.validate_Text(sourceLocator1, "B", driver); // validating text of source
+    	utlity.validate_Text(destinationLocator1, "A", driver); // validating text of destination
     	
     	
 
