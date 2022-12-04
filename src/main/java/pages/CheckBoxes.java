@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import mainUtils.UtilityClass;
 
@@ -25,7 +26,7 @@ public class CheckBoxes {
     
     public void checkbox(String toptext){
     	
-    	System.out.println("Inside checkboxes Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+    	Reporter.log("Inside checkboxes Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     	
     	utlity.validate_Text(txt_checkbox,toptext,driver);
     	
@@ -35,7 +36,7 @@ public class CheckBoxes {
     }
     public void uncheckbox(String toptext){
     	
-    	System.out.println("Inside uncheckboxes Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+    	Reporter.log("Inside uncheckboxes Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     	
     	utlity.validate_Text(txt_checkbox,toptext,driver);
     	

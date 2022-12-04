@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import mainUtils.UtilityClass;
 
@@ -27,8 +28,8 @@ public class Window_new {
 	 UtilityClass utlity = new UtilityClass(driver);
 	 
 	 public void navigate_new_window(String toptext) {
-		 System.out.println("Inside navigate_new_window Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-	    	
+		
+		 Reporter.log("Inside navigate_new_window Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		 
 		 utlity.validate_Text(txt_window,toptext,driver);
 	    
@@ -50,7 +51,7 @@ public class Window_new {
 	 }
 	 
 	 public void notification_message(String toptext) throws InterruptedException {
-		 System.out.println("Inside notification_message Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		 Reporter.log("Inside notification_message Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 	    	
 		 utlity.validate_Text(txt_window,toptext,driver);
 

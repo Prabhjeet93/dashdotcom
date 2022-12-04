@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import mainUtils.UtilityClass;
 
@@ -25,7 +26,7 @@ public class ContextMenu {
 	
     public void validateContextMenu(String toptext){
     	
-    	System.out.println("Inside validateContextMenu Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+    	Reporter.log("Inside validateContextMenu Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     	
     	utlity.validate_Text(txt_cm,toptext,driver);
     	

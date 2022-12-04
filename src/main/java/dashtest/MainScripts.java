@@ -52,6 +52,7 @@ public class MainScripts {
 
 	@BeforeMethod
 	public void beforeMethod() {
+		
 		chromeOptions = new ChromeOptions();
 		HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 		chromePrefs.put("download.default_directory", downloadPath);
@@ -265,7 +266,7 @@ public class MainScripts {
 		jsalerts.val_javascript_alerts("JavaScript Alerts");
 	}
 	
-	@Test(enabled = true) // issue
+	@Test(enabled = true)
 	public void javaScriptError() throws InterruptedException {
 //		Test finds the JavaScript error on the page.
 //		Test asserts that the page contains error: Cannot read property 'xyz' of undefined.

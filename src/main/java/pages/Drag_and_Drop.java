@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import mainUtils.UtilityClass;
 
@@ -28,7 +29,7 @@ public class Drag_and_Drop {
 	
     public void drag_n_drop(String toptext) throws InterruptedException{
     	
-    	System.out.println("Inside drag_n_drop Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+    	Reporter.log("Inside drag_n_drop Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     	
     	utlity.validate_Text(txt_dragdrop,toptext,driver);
     	

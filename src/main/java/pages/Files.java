@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import java.util.concurrent.TimeUnit;
 
@@ -34,8 +35,9 @@ public class Files {
 	 UtilityClass utlity = new UtilityClass(driver);
 	 
 	 public void file_Download(String toptext) throws InterruptedException {
+		 
 	    	
-	    	System.out.println("Inside File Download Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		 	Reporter.log("Inside File Download Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 	    	utlity.validate_Text(txt_filedownload,toptext,driver);
 	    	
 	    	//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -46,16 +48,15 @@ public class Files {
 	    	
 	    	//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	    	
-	    	System.out.println("Downloading file now");
+	    	Reporter.log("Downloading file now");
 	    	WebElement link_download_file = driver.findElement(lnk_dwnlod_file);
 	    	String dwnld_filename=link_download_file.getText();
 	    	link_download_file.click();
 	    	//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	    	
 	    	Thread.sleep(10000);
-	    	System.out.println("File Downloaded now");
+	    	Reporter.log("File Downloaded now");
 	    	
-	    	System.out.println(downloadPath);
 	    	System.out.println(dwnld_filename);
 	    	
 	    	boolean file_status = utlity.isFileDownloaded_Ext(downloadPath, dwnld_filename);
@@ -65,7 +66,7 @@ public class Files {
 	    }
 	 
 	 public void file_Upload(String toptext) throws InterruptedException {
-		 System.out.println("Inside File upload Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		 Reporter.log("Inside File upload Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 	    	
 		 
 		 utlity.validate_Text(txt_filedownload,toptext,driver);
@@ -74,10 +75,6 @@ public class Files {
 		 
 		 utlity.enter_text(chooseFile, driver,path);
 		 utlity.click_anything(btn_file_submit, driver);
-//		 driver.findElement(By.id("file-submit")).click();
-//		 System.out.println(driver.findElement(By.id("uploaded-files")).getText());
-		 
-//		 Assert.assertEquals(driver.findElement(By.id("uploaded-files")).getText(), "some-file.txt");
 		 utlity.validate_Text(txt_file_submitted,"some-file.txt",driver);
 	 }
 }

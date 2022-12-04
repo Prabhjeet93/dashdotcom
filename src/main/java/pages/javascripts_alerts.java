@@ -1,5 +1,6 @@
 package pages;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -12,7 +13,7 @@ import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.testng.Assert;
-
+import org.testng.Reporter;
 
 import mainUtils.UtilityClass;
 
@@ -33,10 +34,9 @@ public class javascripts_alerts {
 
 	UtilityClass utlity = new UtilityClass(driver);
 	public void val_javascript_alerts(String toptext) {
-		System.out.println("Inside val_javascript_alerts Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		Reporter.log("Inside val_javascript_alerts Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 	    	
-//		String actual = driver.findElement(txt_jsAlerts).getText();
-//		Assert.assertEquals(actual, toptext);
+
 		utlity.validate_Text(txt_jsAlerts,toptext,driver);
 	    
 //		Test Clicks on JS Alert Button.
@@ -66,33 +66,14 @@ public class javascripts_alerts {
 		 
 	 
 	 }
-//	public void val_javascript_alerts_error() {
-//		System.out.println("Inside val_javascript_alerts_error Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-//	    	
-//		JavascriptExecutor js = (JavascriptExecutor) driver;
-//		//js.executeScript("location.reload()");
-//		try {
-//			js.executeScript("document.propertyThatDoesNotExist.xyz");
-//			
-//		}
-//		catch (Exception e) {
-//			System.out.println(e.getStackTrace());
-//	    }
-//	
-//	}
-	public <DevTools> void val_javascript_alerts_error() {
-		
-		Set<String> logtypes = driver.manage().logs().getAvailableLogTypes();
-		for (String str: logtypes) {
-			System.out.println(str);
-		}
-		
-		LogEntries logentry = driver.manage().logs().get(LogType.BROWSER);
-		List<LogEntry> logs = logentry.filter(Level.ALL);
-		
-		for (LogEntry log: logs) {
-			System.out.println(log);
-		}
+	
+	public void val_javascript_alerts_error() {
+		Reporter.log("Inside Javascript Error message");
+		LogEntries entries = driver.manage().logs().get(LogType.BROWSER);
+        List<LogEntry> log = entries.getAll();
+        String[] error = log.get(0).getMessage().split("TypeError:");
+        Assert.assertEquals(error[1].trim(), "Cannot read properties of undefined (reading 'xyz')");
+        System.out.println(Arrays.toString(error));
 		
 }
 	

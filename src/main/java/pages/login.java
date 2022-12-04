@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import mainUtils.UtilityClass;
 
@@ -28,7 +29,7 @@ public class login {
     
     public void enterCredentials(String username, String password, String toptext){
     	
-    	System.out.println("Inside login Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+    	Reporter.log("Inside Enter Credential Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     	
     	utlity.validate_Text(txt_login_page,toptext,driver);
     	
@@ -42,15 +43,10 @@ public class login {
     }
     
     public void validate_login(String message) throws InterruptedException {
-    	//utlity.fluent_wait("success_msg");
-//    	Thread.sleep(10000);
-//    	String actual_msg = driver.findElement(success_msg).getText();
-//    	System.out.println(actual_msg);
-    	
+
+    	Reporter.log("Inside login Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     	utlity.validate_Text(success_msg,message,driver);
-    	
-    	//Assert.assertEquals(actual_msg.trim(), message);
-    	//Boolean btn_value = driver.findElement(btn_logout).isEnabled();
+
     	if(message.contains("invalid")) {
     		utlity.chk_isEnabled(login, true, driver);
     	}

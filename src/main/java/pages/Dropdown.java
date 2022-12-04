@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import mainUtils.UtilityClass;
 
@@ -25,11 +26,10 @@ public class Dropdown {
 	
     public void select_dropdown(String toptext) {
     	
-    	System.out.println("Inside dropdown Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+    	Reporter.log("Inside dropdown Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     	
     	utlity.validate_Text(txt_dropdown,toptext,driver);
     	
-    	//WebElement ele = driver.findElement(sl_drpdown);
     	utlity.dropdown(sl_drpdown,"index","1", driver);
     	utlity.val_dropdown_value(sl_drpdown, "Option 1", driver); // validating text of option1
     	utlity.dropdown(sl_drpdown,"index","2", driver);

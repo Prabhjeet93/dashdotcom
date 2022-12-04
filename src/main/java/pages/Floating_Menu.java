@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 import mainUtils.UtilityClass;
 
@@ -29,7 +30,7 @@ public class Floating_Menu {
 	    }
 	 UtilityClass utlity = new UtilityClass(driver);
 	 public void val_floating_menu(String toptext) throws InterruptedException {
-		 System.out.println("Inside floating menu Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		 Reporter.log("Inside floating menu Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 	    	
 		 utlity.validate_Text(txt_floatingmenu,toptext,driver);
 	    
@@ -40,7 +41,7 @@ public class Floating_Menu {
 	 }
 	 
 	 public void val_iframes(String toptext) throws InterruptedException {
-		 System.out.println("Inside iframes Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		 Reporter.log("Inside iframes Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		 
 		 utlity.validate_Text(txt_floatingmenu,toptext,driver);
 	    
@@ -54,14 +55,10 @@ public class Floating_Menu {
 		 
 		 driver.switchTo().frame("mce_0_ifr");
 		 utlity.validate_Text(txt_iframe,"Testing iframes",driver);
-//		 String iframe_txt = driver.findElement(By.id("tinymce")).getText();
-//		 System.out.println(iframe_txt);
-//
-//		 Assert.assertEquals(iframe_txt, "Testing iframes");
 
 	 }
 	 public void val_mouse_hover(String toptext) throws InterruptedException {
-		 System.out.println("Inside mouse hover Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		 Reporter.log("Inside mouse hover Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 	    	
 		 utlity.validate_Text(txt_floatingmenu,toptext,driver);
 	    
