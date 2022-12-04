@@ -1,5 +1,7 @@
 package dashtest;
 
+import java.util.HashMap;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -29,6 +31,7 @@ public class MainScripts {
 	
 
 	WebDriver driver;
+	ChromeOptions chromeOptions;
 
 	login ln;
 	CheckBoxes chkbx;
@@ -41,19 +44,24 @@ public class MainScripts {
 	javascripts_alerts jsalerts;
 	Window_new newWindow;
 	
+	public String downloadPath = System.getProperty("user.dir") + "\\test";
+	
 //	public MainScripts(WebDriver driver) {
 //		this.driver = driver;
 //	}
 
 	@BeforeMethod
 	public void beforeMethod() {
-		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions = new ChromeOptions();
+		HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+		chromePrefs.put("download.default_directory", downloadPath);
+		chromeOptions.setExperimentalOption("prefs", chromePrefs);
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver(chromeOptions);
 		driver.manage().window().maximize();
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void loginSuccess() throws InterruptedException {
 		ln = new login(driver);
 		System.out.println("Navigating to the page: "+UtilityClass.configReader("url_login"));
@@ -70,7 +78,7 @@ public class MainScripts {
 				"×");		
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void loginFailed() throws InterruptedException {
 		ln = new login(driver);
 		System.out.println("Navigating to the page");
@@ -86,7 +94,7 @@ public class MainScripts {
 				"×");
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void checkbox() throws InterruptedException {
 //		Test checks and unchecks checkboxes.
 //		Test uses assertions to make sure boxes were properly checked and unchecked.
@@ -100,7 +108,7 @@ public class MainScripts {
 		
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void contextMenu() throws InterruptedException {
 //		Test right clicks on the context menu.
 //		Test asserts the alert menu text.
@@ -114,7 +122,7 @@ public class MainScripts {
 		
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void dragAndDrop() throws InterruptedException {
 //		Test drags element A to element B.
 //		Test asserts that the text on element A and B are switched.
@@ -127,7 +135,7 @@ public class MainScripts {
 		
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void dropdown() throws InterruptedException {
 //		Test selects Option 1 and Option 2 from the drop down menu.
 //		Test asserts Option 1 and Option 2 are selected.
@@ -139,7 +147,7 @@ public class MainScripts {
 		drpdwn.select_dropdown("Dropdown List");
 	}
 	
-	@Test(enabled = false) // not completed yet
+	@Test(enabled = true) // not completed yet
 	public void dynamicContent() throws InterruptedException {
 //		Test refreshes the page a couple of times.
 //		Test asserts that the content changes on each refresh.
@@ -151,7 +159,7 @@ public class MainScripts {
 		dynmic.dynamic_content("Dynamic Content");
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void dynamicControl() throws InterruptedException {
 //		Test clicks on the Remove Button and uses explicit wait.
 //		Test asserts that the checkbox is gone.
@@ -169,7 +177,7 @@ public class MainScripts {
 		dynmic.dynamic_Control("Dynamic Controls");
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void dynamicloading() throws InterruptedException {
 //		Test clicks the start button and uses explicit wait.
 //		Test asserts that “Hello World!” text is displayed.
@@ -181,7 +189,7 @@ public class MainScripts {
 		dynmic.dynamic_loading("Dynamically Loaded Page Elements");
 	}
 	
-	@Test(enabled = false)//not done yet
+	@Test(enabled = true)
 	public void fileDownload() throws InterruptedException {
 //		Test clicks on the file.
 //		Test asserts that the file is downloaded.
@@ -193,7 +201,7 @@ public class MainScripts {
 		files.file_Download("File Downloader");
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void fileUpload() throws InterruptedException {
 //		Test uses Upload Button or Drag and Drop to upload a file.
 //		Test asserts that the file is uploaded.
@@ -205,7 +213,7 @@ public class MainScripts {
 		files.file_Upload("File Uploader");
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void floatingMenu() throws InterruptedException {
 //		Test scrolls the page.
 //		Test asserts that the floating menu is still displayed.
@@ -217,7 +225,7 @@ public class MainScripts {
 		floatingmenu.val_floating_menu("Floating Menu");
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void iframetest() throws InterruptedException {
 //		Test switches to Iframe and types some text.
 //		Test asserts that the typed text is as expected.
@@ -229,7 +237,7 @@ public class MainScripts {
 		floatingmenu.val_iframes("An iFrame containing the TinyMCE WYSIWYG Editor");
 		
 	}
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void mouseHover() throws InterruptedException {
 //		Test does a mouse hover on each image.
 //		Test asserts that additional information is displayed for each image.
@@ -241,7 +249,7 @@ public class MainScripts {
 		floatingmenu.val_mouse_hover("Hovers");
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void javaScriptAlerts() throws InterruptedException {
 //		Test Clicks on JS Alert Button.
 //		Test asserts alert message.
@@ -257,7 +265,7 @@ public class MainScripts {
 		jsalerts.val_javascript_alerts("JavaScript Alerts");
 	}
 	
-	@Test(enabled = false) // not done
+	@Test(enabled = true) // issue
 	public void javaScriptError() throws InterruptedException {
 //		Test finds the JavaScript error on the page.
 //		Test asserts that the page contains error: Cannot read property 'xyz' of undefined.
@@ -269,7 +277,7 @@ public class MainScripts {
 		jsalerts.val_javascript_alerts_error();
 	}
 	
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void openNewTab() throws InterruptedException {
 //		Test clicks on the Click Here link.
 //		Test asserts that a new tab is opened with text New Window.
@@ -281,7 +289,7 @@ public class MainScripts {
 		newWindow.navigate_new_window("Opening a new window");
 	}
 	
-	@Test(enabled = true)//not completed
+	@Test(enabled = true)
 	public void notification_Message() throws InterruptedException {
 //		Test clicks on the Click Here link a multiple times.
 //		Test asserts that one of the “Action Successful”, “Action unsuccessful, 

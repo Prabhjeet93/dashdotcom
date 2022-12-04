@@ -15,10 +15,10 @@ public class Window_new {
 	WebDriver driver;
 	
 	
-	By txt_filedownload =By.xpath("//*[@id=\"content\"]/div/h3");
+	By txt_window =By.xpath("//*[@id=\"content\"]/div/h3");
 	By link_clik_msg = By.linkText("Click here");
 	By vali_msg = By.id("flash");
-
+	By clk_new_window = By.xpath("//*[@id=\"content\"]/div/a");
 	
 	 public Window_new(WebDriver driver){
 		 this.driver = driver;
@@ -29,15 +29,10 @@ public class Window_new {
 	 public void navigate_new_window(String toptext) {
 		 System.out.println("Inside navigate_new_window Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 	    	
-		 String actual = driver.findElement(txt_filedownload).getText();
-		 Assert.assertEquals(actual, toptext);
+		 
+		 utlity.validate_Text(txt_window,toptext,driver);
 	    
-		 utlity.scrolldown(driver);
-		 
-		 //WebElement floatmenu = driver.findElement(By.id("menu")).isDisplayed();
-		 
-		 WebElement clk_new_window = driver.findElement(By.xpath("//*[@id=\"content\"]/div/a"));
-		 clk_new_window.click();
+		 utlity.click_anything(clk_new_window, driver);
 		 
 		 String mainWindowHandle = driver.getWindowHandle();
 		 Set<String> windows = driver.getWindowHandles(); 
@@ -57,36 +52,27 @@ public class Window_new {
 	 public void notification_message(String toptext) throws InterruptedException {
 		 System.out.println("Inside notification_message Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 	    	
-		 String actual = driver.findElement(txt_filedownload).getText();
-		 Assert.assertEquals(actual, toptext);
-	    
-		 
+		 utlity.validate_Text(txt_window,toptext,driver);
+
 		 int counter=0;
 		 String success = "Action successful\r\n" + 
 		 		"×";
 		 String unsuccess="Action unsuccesful, please try again\r\n" + 
 		 		"×";
-		 while(counter<=2) {
+		 while(counter<=5) {
 			 System.out.println("Looping time");
 //				Test clicks on the Click Here link a multiple times.
-			 WebElement clk_notification1 = driver.findElement(link_clik_msg);
-			 clk_notification1.click();
+			 utlity.click_anything(link_clik_msg, driver);
 			 
-//				Test asserts that one of the “Action Successful”, “Action unsuccessful, please try again” and “Action Unsuccessful” messages show on click.
-			 WebElement verify_msg1 = driver.findElement(vali_msg);
+			 String expct = utlity.fetch_Text(vali_msg, driver);
 			 
-//			 utlity.validate_Text(verify_msg1,success);
-			 utlity.explicit_wait(link_clik_msg,driver);
-			 WebElement clk_notification2 = driver.findElement(link_clik_msg);
-			 clk_notification2.click();
-			 WebElement verify_msg2 = driver.findElement(vali_msg);
-			 //utlity.validate_Text(verify_msg2,unsuccess);
-			 
-			 WebElement clk_notification3 = driver.findElement(link_clik_msg);
-			 clk_notification3.click();
-			 WebElement verify_msg3 = driver.findElement(vali_msg);
-			 //utlity.validate_Text(verify_msg3,unsuccess);
-//				
+			 if (expct.contains("successful")) {
+				 utlity.validate_Text(vali_msg,success, driver);
+			 }
+			 else {
+				 utlity.validate_Text(vali_msg,unsuccess, driver);
+			 }
+				
 			counter++; 
 		 }
 	 	}

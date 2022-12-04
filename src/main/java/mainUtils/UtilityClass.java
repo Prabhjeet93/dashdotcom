@@ -2,8 +2,10 @@ package mainUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -13,6 +15,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,8 +23,10 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import java.nio.file.*;
 
 import dashtest.MainScripts;
+
 
 
 public class UtilityClass {
@@ -37,7 +42,17 @@ public class UtilityClass {
 		WebElement val_txt = driver.findElement(wb);
 		String actual = val_txt.getText().trim();
 		System.out.println("validating this text: "+actual);
+		System.out.println("Expected   this text: "+expected);
+		//Assert.assertEquals(actual, expected);
 		Assert.assertEquals(actual, expected);
+		
+	}
+	public String fetch_Text(By wb, WebDriver driver) {
+		this.explicit_wait(wb,driver);
+		WebElement val_txt = driver.findElement(wb);
+		String actual = val_txt.getText().trim();
+		System.out.println("validating this text: "+actual);
+		return actual;
 		
 	}
 	public void click_anything(By wb, WebDriver driver) {
@@ -248,8 +263,31 @@ public class UtilityClass {
 		wait.ignoring(NoSuchElementException.class);
 		wait.until(ExpectedConditions.alertIsPresent());
 
+	}
+	
+	public boolean isFileDownloaded_Ext(String dirPath, String name){
+		boolean flag=false;
+	    File dir = new File(dirPath);
+	    File[] files = dir.listFiles();
+	    if (files == null || files.length == 0) {
+	        flag = false;
+	    }
+	    
+	    for (int i = 0; i < files.length; i++) {
+	    	if(files[i].getName().contains(name)) {
+	    		flag=true;
+	    	}
+	    }
+	    return flag;
+	}
 
-		
+	public void delete_files(String deletpath) {
+		Path file_path = FileSystems.getDefault().getPath(deletpath);
+		//Files.deleteIfExists(file_path);
+		try {
+			Files.deleteIfExists(file_path);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-
+	}
 }

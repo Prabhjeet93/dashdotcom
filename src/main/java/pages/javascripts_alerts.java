@@ -1,10 +1,18 @@
 package pages;
 
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
 import org.testng.Assert;
+
 
 import mainUtils.UtilityClass;
 
@@ -58,20 +66,35 @@ public class javascripts_alerts {
 		 
 	 
 	 }
-	public void val_javascript_alerts_error() {
-		System.out.println("Inside val_javascript_alerts_error Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-	    	
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		//js.executeScript("location.reload()");
-		try {
-			js.executeScript("document.propertyThatDoesNotExist.xyz");
-			
+//	public void val_javascript_alerts_error() {
+//		System.out.println("Inside val_javascript_alerts_error Method $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+//	    	
+//		JavascriptExecutor js = (JavascriptExecutor) driver;
+//		//js.executeScript("location.reload()");
+//		try {
+//			js.executeScript("document.propertyThatDoesNotExist.xyz");
+//			
+//		}
+//		catch (Exception e) {
+//			System.out.println(e.getStackTrace());
+//	    }
+//	
+//	}
+	public <DevTools> void val_javascript_alerts_error() {
+		
+		Set<String> logtypes = driver.manage().logs().getAvailableLogTypes();
+		for (String str: logtypes) {
+			System.out.println(str);
 		}
-		catch (Exception e) {
-			System.out.println(e.getStackTrace());
-	    }
-	
-	}
+		
+		LogEntries logentry = driver.manage().logs().get(LogType.BROWSER);
+		List<LogEntry> logs = logentry.filter(Level.ALL);
+		
+		for (LogEntry log: logs) {
+			System.out.println(log);
+		}
+		
+}
 	
 }
 	
